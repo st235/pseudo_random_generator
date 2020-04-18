@@ -4,7 +4,7 @@ This project was created for educational purposes and handles various pseudo ran
 generation methods. Currently there are a lot of things
 needs to be done as I explore the wonderful world of numeric methods.
 I really like to quote [Steve Jobs from Stanford University speech](https://youtu.be/D1R-jKKp3NA?t=848):
-"Stay hungry, stay foolish!". 
+"Stay hungry, stay foolish!", - it leads me to new discoveries. 
 
 PS: do not hesitate to contribute and feel free to join
 
