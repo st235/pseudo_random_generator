@@ -1,6 +1,5 @@
 #include "RandomFactory.h"
 
-#include <ctime>
 #include <chrono>
 #include "./linear/LinearCongruentialRandom.h"
 

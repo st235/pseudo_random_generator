@@ -1,5 +1,5 @@
-#ifndef PSEUDO_RANDOM_FISH_RANDOM_H
-#define PSEUDO_RANDOM_FISH_RANDOM_H
+#ifndef PSEUDO_RANDOM_LINEAR_CONGRUENTIAL_RANDOM_H
+#define PSEUDO_RANDOM_LINEAR_CONGRUENTIAL_RANDOM_H
 
 #include <cstdint>
 #include <cfloat>
@@ -16,4 +16,4 @@ public:
 
 } // namespace random_generator
 
-#endif //PSEUDO_RANDOM_FISH_RANDOM_H
+#endif //PSEUDO_RANDOM_LINEAR_CONGRUENTIAL_RANDOM_H
