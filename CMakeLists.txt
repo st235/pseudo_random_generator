@@ -12,4 +12,4 @@ add_executable(pseudo_random_generator
         src/RandomFactory.h
         src/middle_square/MiddleSquareRandom.cpp
         src/middle_square/MiddleSquareRandom.h
-)
+        tools/analytics/drawing/Bitmap.cpp tools/analytics/drawing/Bitmap.h)
