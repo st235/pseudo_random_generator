@@ -21,9 +21,11 @@ int main() {
     uint8_t padding[3] = {0, 0, 0};
     int paddingSize = (4 - (bitmap->getWidth() * 3) % 4) % 4;
 
-    bitmap->putPixelAt(1, 1, static_cast<uint32_t>(0x00FFFFFF));
-    bitmap->putPixelAt(5, 5, static_cast<uint32_t>(0x00FFFFFF));
-    bitmap->putPixelAt(50, 50, static_cast<uint32_t>(0x00FFFFFF));
+    bitmap->fillWithColor(0x00FFFFFF);
+
+    bitmap->putPixelAt(1, 1, static_cast<uint32_t>(0));
+    bitmap->putPixelAt(5, 5, static_cast<uint32_t>(0));
+    bitmap->putPixelAt(50, 50, static_cast<uint32_t>(0));
 
     fwrite(bitmap->getFileHeader(), 1, tools::Bitmap::getFileHeaderSizeInBytes(), imageFile);
     fwrite(bitmap->getInfoHeader(), 1, tools::Bitmap::getInfoHeaderSizeInBytes(), imageFile);

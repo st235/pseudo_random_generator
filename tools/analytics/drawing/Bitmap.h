@@ -32,6 +32,8 @@ public:
 
     uint8_t* getImageData() const;
 
+    void fillWithColor(uint32_t color);
+
     // color in format 00000000rrrrrrrrggggggggbbbbbbbb
     void putPixelAt(uint32_t x, uint32_t y, uint32_t color);
 

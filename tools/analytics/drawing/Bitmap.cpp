@@ -88,6 +88,14 @@ uint8_t* Bitmap::getImageData() const {
     return _image_data;
 }
 
+void Bitmap::fillWithColor(uint32_t color) {
+    for (int i = 0; i < _width; i++) {
+        for (int j = 0; j < _height; j++) {
+            putPixelAt(i, j, color);
+        }
+    }
+}
+
 void Bitmap::putPixelAt(uint32_t x, uint32_t y, uint32_t color) {
     _image_data[y * _width * BYTES_PER_PIXEL + x * BYTES_PER_PIXEL] = static_cast<uint8_t>(color);
     _image_data[y * _width * BYTES_PER_PIXEL + x * BYTES_PER_PIXEL + 1] = static_cast<uint8_t>(color >> 8U);
