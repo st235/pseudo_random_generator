@@ -7,7 +7,7 @@ int detectCycle(random_generator::Random* random);
 
 int main() {
     auto random_factory = std::make_unique<random_generator::RandomFactory>();
-    auto random_ptr = random_factory->create();
+    auto random_ptr = random_factory->create(random_generator::RandomFactory::Type::MIDDLE_SQUARES);
 
 //    std::cout << "Cycle size is: " << detectCycle(random_ptr.get());
 

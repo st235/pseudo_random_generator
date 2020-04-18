@@ -19,7 +19,7 @@ PS: do not hesitate to contribute and feel free to join
 ### Roadmap
 
  - [x] Linear congruential method
- - [ ] Middle-square method (Newton's method)
+ - [x] Middle-square method (Newton's method)
  - [ ] Analysis tools
  - [ ] Correctness tests
  - [ ] Helpful numeric methods

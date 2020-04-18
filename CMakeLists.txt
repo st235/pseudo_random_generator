@@ -10,4 +10,6 @@ add_executable(pseudo_random_generator
         src/linear/LinearCongruentialRandom.h
         src/RandomFactory.cpp
         src/RandomFactory.h
+        src/middle_square/MiddleSquareRandom.cpp
+        src/middle_square/MiddleSquareRandom.h
 )

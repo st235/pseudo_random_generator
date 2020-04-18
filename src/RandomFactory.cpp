@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include "./linear/LinearCongruentialRandom.h"
+#include "./middle_square/MiddleSquareRandom.h"
 
 namespace {
 
@@ -21,6 +22,8 @@ std::unique_ptr<Random> RandomFactory::create(Type type) {
     switch (type) {
         case Type::LINEAR_CONGRUENTIAL:
             return std::make_unique<LinearCongruentialRandom>(GetCurrentSystemTime());
+        case Type::MIDDLE_SQUARES:
+            return std::make_unique<MiddleSquareRandom>(GetCurrentSystemTime());
         default:
             throw std::runtime_error("cannot find suitable algorithm");
     }
