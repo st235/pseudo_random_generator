@@ -9,7 +9,12 @@ int main() {
     auto random_factory = std::make_unique<random_generator::RandomFactory>();
     auto random_ptr = random_factory->create();
 
-    std::cout << "Cycle size is: " << detectCycle(random_ptr.get());
+//    std::cout << "Cycle size is: " << detectCycle(random_ptr.get());
+
+
+    for (int i = 0; i < 100; i++) {
+        std::cout << "Value: " << random_ptr->next() << std::endl;
+    }
 
     return 0;
 }
