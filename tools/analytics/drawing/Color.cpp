@@ -35,4 +35,10 @@ Color Color::RED = Color(255, 0, 0);
 Color Color::GREEN = Color(0, 255, 0);
 Color Color::BLUE = Color(0, 0, 255);
 
+Color Color::GREY = Color(192, 192, 192);
+Color Color::KHAKI = Color(240, 230, 140);
+Color Color::CORAL = Color(255, 127, 80);
+Color Color::TOMATO = Color(255, 99, 71);
+
+
 }  // namespace tools

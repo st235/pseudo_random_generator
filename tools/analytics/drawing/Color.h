@@ -29,6 +29,11 @@ public:
     static Color BLUE;
     static Color WHITE;
     static Color BLACK;
+
+    static Color GREY;
+    static Color KHAKI;
+    static Color CORAL;
+    static Color TOMATO;
 };
 
 }  // namespace tools
