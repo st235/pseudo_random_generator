@@ -18,12 +18,12 @@ uint32_t GetCurrentSystemTime() {
 
 namespace random_generator {
 
-std::unique_ptr<Random> RandomFactory::create(Type type) {
+std::unique_ptr<Random> RandomFactory::create(Type type, uint32_t seed) {
     switch (type) {
         case Type::LINEAR_CONGRUENTIAL:
-            return std::make_unique<LinearCongruentialRandom>(GetCurrentSystemTime());
+            return std::make_unique<LinearCongruentialRandom>(seed);
         case Type::MIDDLE_SQUARES:
-            return std::make_unique<MiddleSquareRandom>(GetCurrentSystemTime());
+            return std::make_unique<MiddleSquareRandom>(seed);
         default:
             throw std::runtime_error("cannot find suitable algorithm");
     }

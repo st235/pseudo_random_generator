@@ -5,6 +5,12 @@
 
 #include "Random.h"
 
+namespace {
+
+    uint32_t GetCurrentSystemTime();
+
+}
+
 namespace random_generator {
 
 class RandomFactory {
@@ -14,7 +20,7 @@ public:
         MIDDLE_SQUARES
     };
 
-    std::unique_ptr<Random> create(Type type = Type::LINEAR_CONGRUENTIAL);
+    std::unique_ptr<Random> create(Type type = Type::LINEAR_CONGRUENTIAL, uint32_t seed = GetCurrentSystemTime());
 };
 
 }  // namespace random_generator
