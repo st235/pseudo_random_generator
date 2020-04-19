@@ -4,6 +4,8 @@
 #include <string>
 #include <memory>
 
+#include "./Color.h"
+
 namespace tools {
 
 class Bitmap {
@@ -19,6 +21,10 @@ private:
 
 public:
     Bitmap(std::string&& title, uint16_t width, uint16_t height);
+    Bitmap(const Bitmap& bitmap) = delete;
+    Bitmap& operator=(const Bitmap& bitmap) = delete;
+    Bitmap(Bitmap&& bitmap) noexcept;
+    Bitmap& operator=(Bitmap&& bitmap) noexcept;
 
     std::string getTitle() const;
 
@@ -26,16 +32,17 @@ public:
 
     uint16_t getHeight() const;
 
+    uint32_t getPaddingSize() const;
+
     uint8_t* getFileHeader() const;
 
     uint8_t* getInfoHeader() const;
 
     uint8_t* getImageData() const;
 
-    void fillWithColor(uint32_t color);
+    void fillWithColor(Color* color);
 
-    // color in format 00000000rrrrrrrrggggggggbbbbbbbb
-    void putPixelAt(uint32_t x, uint32_t y, uint32_t color);
+    void putPixelAt(uint32_t x, uint32_t y, Color* color);
 
     ~Bitmap();
 
@@ -44,6 +51,8 @@ public:
     static uint8_t getFileHeaderSizeInBytes();
 
     static uint8_t getInfoHeaderSizeInBytes();
+
+    static uint8_t getBytesPerPixel();
 };
 
 }  // namespace tools

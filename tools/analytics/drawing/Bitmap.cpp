@@ -17,6 +17,38 @@ Bitmap::Bitmap(std::string&& title,
     _image_data = new uint8_t[_width * _height * BYTES_PER_PIXEL];
 }
 
+Bitmap::Bitmap(Bitmap &&bitmap) noexcept {
+    _width = bitmap._width;
+    _height = bitmap._height;
+    _title = std::move(bitmap._title);
+    _paddingSize = bitmap._paddingSize;
+    _image_data = bitmap._image_data;
+
+    bitmap._width = 0;
+    bitmap._height = 0;
+    bitmap._paddingSize = 0;
+    bitmap._image_data = nullptr;
+}
+
+Bitmap& Bitmap::operator=(Bitmap &&bitmap) noexcept {
+    if (this == &bitmap) {
+        return *this;
+    }
+
+    _width = bitmap._width;
+    _height = bitmap._height;
+    _title = std::move(bitmap._title);
+    _paddingSize = bitmap._paddingSize;
+    _image_data = bitmap._image_data;
+
+    bitmap._width = 0;
+    bitmap._height = 0;
+    bitmap._paddingSize = 0;
+    bitmap._image_data = nullptr;
+
+    return *this;
+}
+
 uint32_t Bitmap::calculateFileSize() const {
     return FILE_HEADER_SIZE_IN_BYTES + INFO_HEADER_SIZE_IN_BYTES + (BYTES_PER_PIXEL * _width + _paddingSize) * _height;
 }
@@ -27,6 +59,10 @@ uint16_t Bitmap::getWidth() const {
 
 uint16_t Bitmap::getHeight() const {
     return _height;
+}
+
+uint32_t Bitmap::getPaddingSize() const {
+    return _paddingSize;
 }
 
 std::string Bitmap::getTitle() const {
@@ -88,7 +124,7 @@ uint8_t* Bitmap::getImageData() const {
     return _image_data;
 }
 
-void Bitmap::fillWithColor(uint32_t color) {
+void Bitmap::fillWithColor(Color* color) {
     for (int i = 0; i < _width; i++) {
         for (int j = 0; j < _height; j++) {
             putPixelAt(i, j, color);
@@ -96,10 +132,11 @@ void Bitmap::fillWithColor(uint32_t color) {
     }
 }
 
-void Bitmap::putPixelAt(uint32_t x, uint32_t y, uint32_t color) {
-    _image_data[y * _width * BYTES_PER_PIXEL + x * BYTES_PER_PIXEL] = static_cast<uint8_t>(color);
-    _image_data[y * _width * BYTES_PER_PIXEL + x * BYTES_PER_PIXEL + 1] = static_cast<uint8_t>(color >> 8U);
-    _image_data[y * _width * BYTES_PER_PIXEL + x * BYTES_PER_PIXEL + 2] = static_cast<uint8_t>(color >> 16U);
+void Bitmap::putPixelAt(uint32_t x, uint32_t y, Color* color) {
+    uint32_t rawColor = color->getColor();
+    _image_data[y * _width * BYTES_PER_PIXEL + x * BYTES_PER_PIXEL] = static_cast<uint8_t>(rawColor);
+    _image_data[y * _width * BYTES_PER_PIXEL + x * BYTES_PER_PIXEL + 1] = static_cast<uint8_t>(rawColor >> 8U);
+    _image_data[y * _width * BYTES_PER_PIXEL + x * BYTES_PER_PIXEL + 2] = static_cast<uint8_t>(rawColor >> 16U);
 }
 
 std::unique_ptr<Bitmap> Bitmap::create(std::string&& title, uint16_t width, uint16_t height) {
@@ -112,6 +149,10 @@ uint8_t Bitmap::getFileHeaderSizeInBytes() {
 
 uint8_t Bitmap::getInfoHeaderSizeInBytes() {
     return static_cast<uint8_t>(INFO_HEADER_SIZE_IN_BYTES);
+}
+
+uint8_t Bitmap::getBytesPerPixel() {
+    return static_cast<uint8_t>(BYTES_PER_PIXEL);
 }
 
 Bitmap::~Bitmap() {
