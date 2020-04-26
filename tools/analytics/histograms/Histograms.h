@@ -18,6 +18,7 @@ private:
   uint16_t _capacity;
   std::set<double> _intervals;
   std::unordered_map<double, uint32_t> _hit_count;
+  uint64_t _count;
 
 public:
     Histograms(uint16_t capacity);
@@ -32,6 +33,9 @@ public:
      * @return
      */
     std::map<double, uint32_t> rawHistogram() const;
+
+    uint64_t getCount() const;
+
     double getIntervalLength() const;
 };
 

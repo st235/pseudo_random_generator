@@ -18,7 +18,7 @@ struct fuzzy_search: std::unary_function<double, bool> {
 
 namespace tools {
 
-Histograms::Histograms(uint16_t capacity): _capacity(capacity) {
+Histograms::Histograms(uint16_t capacity): _capacity(capacity), _count(0) {
     double interval_length = getIntervalLength();
 
     double current = 0.0;
@@ -45,6 +45,7 @@ void Histograms::countPointAt(double position) {
 
     rawValue++;
     _hit_count[*interval_iterator] = rawValue;
+    _count++;
 }
 
 std::map<double, uint32_t> Histograms::rawHistogram() const {
@@ -53,6 +54,9 @@ std::map<double, uint32_t> Histograms::rawHistogram() const {
     return temp;
 }
 
+uint64_t Histograms::getCount() const {
+    return _count;
+}
 
 double Histograms::getIntervalLength() const {
     return 1.0 / static_cast<double>(_capacity);
