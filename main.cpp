@@ -4,6 +4,7 @@
 #include "./tests/histograms/DensityHistogramTest.h"
 #include "./tests/histograms/EmpiricalDistributionTest.h"
 #include "./tests/plane_distribution/PlaneDistributionTest.h"
+#include "./tests/numeric/NumericCharacteristicsTest.h"
 
 namespace {
 
@@ -18,6 +19,7 @@ int main() {
     auto plane_test = std::make_unique<tests::PlaneDistributionTest>(512, SAMPLE_SIZE, random_ptr.get());
     auto density_test = std::make_unique<tests::DensityHistogramTest>(SAMPLE_SIZE, random_ptr.get());
     auto empirical_distribution_test = std::make_unique<tests::EmpiricalDistributionTest>(SAMPLE_SIZE, random_ptr.get());
+    auto numeric_test = std::make_unique<tests::NumericCharacteristicsTest>(SAMPLE_SIZE, random_ptr.get());
 
     plane_test
         ->run()
@@ -28,6 +30,10 @@ int main() {
         ->saveResults();
 
     empirical_distribution_test
+        ->run()
+        ->saveResults();
+
+    numeric_test
         ->run()
         ->saveResults();
 

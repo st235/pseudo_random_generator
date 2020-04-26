@@ -29,7 +29,7 @@ Test* PlaneDistributionTest::run() {
 Test* PlaneDistributionTest::saveResults() {
     auto renderer = tools::Renderer::forBitmap(_chart->getChart());
     renderer->drawBitmap(_chart->getChart());
-    std::cout << "Test flushed at the disk";
+    std::cout << "Test flushed at the disk" << std::endl;
     return this;
 }
 

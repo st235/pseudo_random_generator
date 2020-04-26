@@ -14,9 +14,9 @@ namespace tests {
 class EmpiricalDistributionTest : public Test {
 private:
     uint32_t _sample_size;
+    random_generator::Random* _random;
     std::unique_ptr<tools::CsvExporter> _exporter;
     std::unique_ptr<tools::Histograms> _histogram;
-    random_generator::Random* _random;
 
 public:
     EmpiricalDistributionTest(uint32_t sample_size, random_generator::Random* random);
