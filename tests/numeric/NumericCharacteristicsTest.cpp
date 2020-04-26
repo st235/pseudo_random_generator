@@ -28,6 +28,8 @@ Test* NumericCharacteristicsTest::saveResults() {
               << "dispersion: " << _dispersion << std::endl
               << "asymmetry factory: " << _asymmetryFactor << std::endl
               << "excess factor: " << _excessFactor << std::endl;
+
+    return this;
 }
 
 double NumericCharacteristicsTest::expectedValue() {
