@@ -3,8 +3,8 @@
 
 #include <cstdint>
 
-#include "./Bitmap.h"
-#include "./Color.h"
+#include "../../export/bitmap/Bitmap.h"
+#include "../../export/bitmap/Color.h"
 
 namespace tools {
 

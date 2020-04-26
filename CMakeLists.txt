@@ -12,4 +12,4 @@ add_executable(pseudo_random_generator
         src/RandomFactory.h
         src/middle_square/MiddleSquareRandom.cpp
         src/middle_square/MiddleSquareRandom.h
-        tools/analytics/drawing/Bitmap.cpp tools/analytics/drawing/Bitmap.h tools/analytics/drawing/Color.cpp tools/analytics/drawing/Color.h tools/analytics/drawing/Renderer.cpp tools/analytics/drawing/Renderer.h tools/analytics/drawing/Chart.cpp tools/analytics/drawing/Chart.h)
+        tools/export/bitmap/Bitmap.cpp tools/export/bitmap/Bitmap.h tools/export/bitmap/Color.cpp tools/export/bitmap/Color.h tools/export/bitmap/Renderer.cpp tools/export/bitmap/Renderer.h tools/analytics/drawing/Chart.cpp tools/analytics/drawing/Chart.h tests/plane_distribution/PlaneDistributionTest.cpp tests/plane_distribution/PlaneDistributionTest.h tests/Test.h tools/export/csv/CsvExporter.cpp tools/export/csv/CsvExporter.h tools/analytics/histograms/Histograms.cpp tools/analytics/histograms/Histograms.h tests/histograms/DensityHistogramTest.cpp tests/histograms/DensityHistogramTest.h)

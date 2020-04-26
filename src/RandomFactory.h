@@ -5,13 +5,9 @@
 
 #include "Random.h"
 
-namespace {
-
-    uint32_t GetCurrentSystemTime();
-
-}
-
 namespace random_generator {
+
+uint32_t GetCurrentSystemTime();
 
 class RandomFactory {
 public:
