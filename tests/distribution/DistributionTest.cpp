@@ -5,7 +5,7 @@
 
 namespace {
 
-constexpr double THEORETICAL_TRUST_LEVEL[] = { 0.15, 0.1, 0.05, 0.025, 0.01 };
+constexpr double THEORETICAL_SIGNIFICANCE_LEVEL[] = {0.15, 0.1, 0.05, 0.025, 0.01 };
 constexpr double THEORETICAL_DEVIATION[] = { 1.138, 1.224, 1.358, 1.480, 1.628 };
 
 } // anonymous namespace
@@ -56,13 +56,13 @@ Test* DistributionTest::saveResults() {
         if (_statistics_deviation <= THEORETICAL_DEVIATION[i]) {
             std::cout << "statistics deviation is: " << _statistics_deviation << std::endl
                       << "matched theoretical threshold: " << THEORETICAL_DEVIATION[i] << std::endl
-                      << "trust level is: " << THEORETICAL_TRUST_LEVEL[i] << std::endl;
+                      << "significance level is: " << THEORETICAL_SIGNIFICANCE_LEVEL[i] << std::endl;
 
             return this;
         }
     }
 
-    std::cout << "threshold not found, deviation is: " << _statistics_deviation << std::endl;
+    std::cout << "threshold not found, base hypothesis declined, deviation is: " << _statistics_deviation << std::endl;
 
     return this;
 }

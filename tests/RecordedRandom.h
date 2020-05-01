@@ -3,6 +3,7 @@
 
 #include "cstdint"
 #include <vector>
+#include <memory>
 
 #include "../src/Random.h"
 
@@ -23,6 +24,8 @@ public:
     uint32_t nextInt() override;
 
     void flush();
+
+    static std::unique_ptr<RecordedRandom> wrap(uint32_t sample_size, random_generator::Random* random);
 };
 
 }
