@@ -1,6 +1,6 @@
 #include "CycleDetectionTest.h"
 
-#include <iostream>
+#include <fstream>
 
 namespace {
 
@@ -10,14 +10,18 @@ constexpr uint32_t MAX_VALUE = 0xFFFFFFFF;
 
 namespace tests {
 
-CycleDetectionTest::CycleDetectionTest(uint32_t sample_size, uint32_t max_capacity, random_generator::Random *random):
+CycleDetectionTest::CycleDetectionTest(uint32_t sample_size, random_generator::Random *random, uint32_t max_capacity):
     _sample_size(sample_size),
     _max_capacity(max_capacity),
     _random(random) {
 
 }
 
-Test* CycleDetectionTest::run() {
+std::string CycleDetectionTest::title() {
+    return "Cycle detection test";
+}
+
+Test::Result CycleDetectionTest::run() {
     uint64_t counter = 0;
 
     uint16_t value = 0;
@@ -31,16 +35,18 @@ Test* CycleDetectionTest::run() {
 
     if (counter >= MAX_VALUE) {
         _cycle_counter = -1;
-    } else {
-        _cycle_counter = static_cast<int64_t>(counter);
+        return Result::ERROR;
     }
 
-    return this;
+    _cycle_counter = static_cast<int64_t>(counter);
+    return Result::OK;
 }
 
-Test* CycleDetectionTest::saveResults() {
-    std::cout << "cycle counter is: " << _cycle_counter << std::endl;
-    return this;
+void CycleDetectionTest::saveReport() {
+    std::ofstream ofstream;
+    ofstream.open("cycle_detection_test_report.txt");
+    ofstream << "cycle counter is: " << _cycle_counter << std::endl;
+    ofstream.close();
 }
 
 }

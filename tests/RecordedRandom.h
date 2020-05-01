@@ -9,7 +9,7 @@
 
 namespace tests {
 
-class RecordedRandom: random_generator::Random {
+class RecordedRandom: public random_generator::Random {
 private:
     uint32_t _sample_size;
     random_generator::Random* _random;

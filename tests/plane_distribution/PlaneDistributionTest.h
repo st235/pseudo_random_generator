@@ -23,10 +23,13 @@ private:
     uint16_t nextInt();
 
 public:
-    PlaneDistributionTest(uint16_t dimension, uint32_t sample_size, random_generator::Random* random);
+    PlaneDistributionTest(uint32_t sample_size, random_generator::Random* random, uint16_t dimension);
 
-    Test* run() override;
-    Test* saveResults() override;
+    std::string title() override;
+
+    Result run() override;
+    void saveReport() override;
+    ~PlaneDistributionTest() override = default;
 };
 
 }

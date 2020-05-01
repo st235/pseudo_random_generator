@@ -21,8 +21,11 @@ private:
 public:
     EmpiricalDistributionTest(uint32_t sample_size, random_generator::Random* random);
 
-    Test* run() override;
-    Test* saveResults() override;
+    std::string title() override;
+
+    Result run() override;
+    void saveReport() override;
+    ~EmpiricalDistributionTest() override = default;
 };
 
 }

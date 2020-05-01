@@ -1,13 +1,12 @@
 #include "PlaneDistributionTest.h"
 
 #include <sstream>
-#include <iostream>
 
 #include "../../tools/export/bitmap/Renderer.h"
 
 namespace tests {
 
-PlaneDistributionTest::PlaneDistributionTest(uint16_t dimension, uint32_t sample_size, random_generator::Random *random):
+PlaneDistributionTest::PlaneDistributionTest(uint32_t sample_size, random_generator::Random *random, uint16_t dimension):
         _dimension(dimension),
         _sample_size(sample_size),
         _random(random) {
@@ -16,21 +15,23 @@ PlaneDistributionTest::PlaneDistributionTest(uint16_t dimension, uint32_t sample
     _chart = std::make_unique<tools::Chart>(std::move(stream.str()), dimension, dimension);
 }
 
-Test* PlaneDistributionTest::run() {
+std::string PlaneDistributionTest::title() {
+    return "Plane distribution test";
+}
+
+Test::Result PlaneDistributionTest::run() {
     _current = nextInt();
     for (uint32_t iteration = 0; iteration < _sample_size; iteration++) {
         _previous = _current;
         _current = nextInt();
         _chart->addPoint(_current, _previous, &tools::Color::BLACK);
     }
-    return this;
+    return Test::Result::OK;
 }
 
-Test* PlaneDistributionTest::saveResults() {
+void PlaneDistributionTest::saveReport() {
     auto renderer = tools::Renderer::forBitmap(_chart->getChart());
     renderer->drawBitmap(_chart->getChart());
-    std::cout << "Test flushed at the disk" << std::endl;
-    return this;
 }
 
 uint16_t PlaneDistributionTest::nextInt() {

@@ -1,7 +1,7 @@
 #include "DistributionTest.h"
 
 #include "cmath"
-#include <iostream>
+#include <fstream>
 
 namespace {
 
@@ -17,10 +17,13 @@ DistributionTest::DistributionTest(uint32_t sample_size, random_generator::Rando
     _random(random),
     _positive_deviation(std::numeric_limits<double>::min()),
     _negative_deviation(std::numeric_limits<double>::min()) {
-
 }
 
-Test* DistributionTest::run() {
+std::string DistributionTest::title() {
+    return "Distribution test";
+}
+
+Test::Result DistributionTest::run() {
     std::vector<double> values;
     for (uint64_t i = 0; i < _sample_size; i++) {
         values.push_back(_random->next());
@@ -46,25 +49,34 @@ Test* DistributionTest::run() {
     auto max_deviation = std::max(_positive_deviation, _negative_deviation);
     _statistics_deviation = (max_deviation + 0.4 / n) * (sqrt_n + 0.2 + 0.68 / sqrt_n);
 
-    return this;
-}
-
-Test* DistributionTest::saveResults() {
     int table_size = sizeof(THEORETICAL_DEVIATION) / sizeof(double);
 
     for (int i = 0; i < table_size; i++) {
         if (_statistics_deviation <= THEORETICAL_DEVIATION[i]) {
-            std::cout << "statistics deviation is: " << _statistics_deviation << std::endl
-                      << "matched theoretical threshold: " << THEORETICAL_DEVIATION[i] << std::endl
-                      << "significance level is: " << THEORETICAL_SIGNIFICANCE_LEVEL[i] << std::endl;
-
-            return this;
+            return Test::Result::OK;
         }
     }
 
-    std::cout << "threshold not found, base hypothesis declined, deviation is: " << _statistics_deviation << std::endl;
+    return Test::Result::ERROR;
+}
 
-    return this;
+void DistributionTest::saveReport() {
+    std::ofstream ofstream;
+    ofstream.open("distribution_test_report.txt");
+
+    int table_size = sizeof(THEORETICAL_DEVIATION) / sizeof(double);
+
+    for (int i = 0; i < table_size; i++) {
+        if (_statistics_deviation <= THEORETICAL_DEVIATION[i]) {
+            ofstream << "statistics deviation is: " << _statistics_deviation << std::endl
+                      << "matched theoretical threshold: " << THEORETICAL_DEVIATION[i] << std::endl
+                      << "significance level is: " << THEORETICAL_SIGNIFICANCE_LEVEL[i] << std::endl;
+            return;
+        }
+    }
+
+    ofstream << "threshold not found, base hypothesis declined, deviation is: " << _statistics_deviation << std::endl;
+    ofstream.close();
 }
 
 }

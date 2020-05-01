@@ -19,10 +19,13 @@ private:
     random_generator::Random* _random;
 
 public:
-    CycleDetectionTest(uint32_t sample_size, uint32_t max_capacity, random_generator::Random* random);
+    CycleDetectionTest(uint32_t sample_size, random_generator::Random* random, uint32_t max_capacity);
 
-    Test* run() override;
-    Test* saveResults() override;
+    std::string title() override;
+
+    Result run() override;
+    void saveReport() override;
+    ~CycleDetectionTest() override = default;
 };
 
 }

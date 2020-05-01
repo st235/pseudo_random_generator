@@ -13,10 +13,12 @@ RecordedRandom::RecordedRandom(uint32_t sample_size, random_generator::Random* r
 }
 
 double RecordedRandom::next() {
+    _current_iteration = (_current_iteration + 1) % _sample_size;
     return _samples[_current_iteration];
 }
 
 uint32_t RecordedRandom::nextInt() {
+    _current_iteration = (_current_iteration + 1) % _sample_size;
     return _samples[_current_iteration] * 0xFFFFFFFF;
 }
 

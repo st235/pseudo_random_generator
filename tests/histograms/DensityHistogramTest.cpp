@@ -9,15 +9,19 @@ DensityHistogramTest::DensityHistogramTest(uint32_t sample_size, random_generato
     _histogram = std::make_unique<tools::Histograms>(10);
 }
 
-Test* DensityHistogramTest::run() {
+std::string DensityHistogramTest::title() {
+    return "Density histogram test";
+}
+
+Test::Result DensityHistogramTest::run() {
     for (uint64_t i = 0; i < _sample_size; i++) {
         _histogram->countPointAt(_random->next());
     }
 
-    return this;
+    return Test::Result::OK;
 }
 
-Test* DensityHistogramTest::saveResults() {
+void DensityHistogramTest::saveReport() {
     const auto& rawHistogram = _histogram->rawHistogram();
 
     for (auto i: rawHistogram) {
@@ -25,8 +29,6 @@ Test* DensityHistogramTest::saveResults() {
         std::string values[] = { std::to_string(i.first), std::to_string(value) };
         _exporter->addRow(values);
     }
-
-    return this;
 }
 
 }
