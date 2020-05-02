@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
         ->addTest<tests::NumericCharacteristicsTest>()
         ->addTest<tests::DistributionTest>()
         ->addTest<tests::PlaneDistributionTest>(512 /* plane capacity */)
-        ->addTest<tests::CycleDetectionTest>(0xFFFF /* capacity */)
+        ->addTest<tests::CycleDetectionTest>()
         ->run();
 
     return 0;

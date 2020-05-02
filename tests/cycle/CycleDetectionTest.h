@@ -13,13 +13,12 @@ namespace tests {
 class CycleDetectionTest: public Test {
 private:
     int64_t _cycle_counter;
-    int32_t _max_capacity;
     uint32_t _sample_size;
-    std::unordered_set<uint32_t> _cycle_detection;
+    std::unordered_set<double> _cycle_detection;
     random_generator::Random* _random;
 
 public:
-    CycleDetectionTest(uint32_t sample_size, random_generator::Random* random, uint32_t max_capacity);
+    CycleDetectionTest(uint32_t sample_size, random_generator::Random* random);
 
     std::string title() override;
 

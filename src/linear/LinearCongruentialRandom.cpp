@@ -46,7 +46,7 @@ LinearCongruentialRandom::LinearCongruentialRandom(
 }
 
 double LinearCongruentialRandom::next() {
-    return static_cast<double>(nextInt()) / MAX_VALUE;
+    return static_cast<double>(nextInt()) / _modulus;
 }
 
 uint32_t LinearCongruentialRandom::nextInt() {
