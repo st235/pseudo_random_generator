@@ -20,9 +20,9 @@ PS: do not hesitate to contribute and feel free to join
 
  - [x] Linear congruential method
  - [x] Middle-square method (Newton's method)
- - [ ] Analysis tools
- - [ ] Correctness tests
- - [ ] Helpful numeric methods
+ - [x] Analysis tools
+ - [x] Correctness tests
+ - [x] Helpful numeric methods
  - [ ] Bug fixing: to infinity and beyond 🚀
  
 ### Books
